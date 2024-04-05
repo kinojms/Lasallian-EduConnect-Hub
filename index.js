@@ -12,85 +12,53 @@ const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const routes = require('./routes/route');
 
-// const postController = require('./controllers/postController');
-
 const app = express();
-
-// MONGO_URL="mongodb://localhost:27017/MCO";
-//mongoose.connect('mongodb://localhost:27017/MCO');
 
 const uri = "mongodb+srv://tsukino:uElnJfxOaCI5Vspj@mco.qpmivzx.mongodb.net/?retryWrites=true&w=majority&appName=MCO";
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
-async function run() {
-  try {
-    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-    await mongoose.connect(uri, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
+mongoose.connect(uri, clientOptions).then(() => {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
-  }
-}
-run().catch(console.dir);
-
-// Create an instance of express-handlebars
-const hbs = exphbs.create({ 
-    extname: '.hbs',
-    layoutsDir: __dirname + '/views/layouts/', // Set the layouts directory
-    defaultLayout: false, // Disable default layout
-    runtimeOptions: {
-        allowProtoPropertiesByDefault: true
-    }
+}).catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
 });
-
 
 app.set("view engine", "ejs");
 require('dotenv').config();
 
-// Set Handlebars as the view engine
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-// Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Serve static files
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
 
-// Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware to setup sessions
 app.use(session({
     secret: 'Lazy Lucy',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/MCO' }),
-    cookie: { secure: false } // Note: secure should be set to true when in a production environment
+    store: MongoStore.create({ mongoUrl: uri }),
+    cookie: { secure: false }
 }));
 
-// Middleware for Passport.js
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Middleware for Authentication Status
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
 });
 
-// USER ROUTES FOR SIGNUP/LOGIN
 app.use('/', userRoutes);
 
 app.use('/', postRoutes);
 
 app.use('/', routes);
 
-// LISTENING ON PORT 3000
 app.listen(3000, () => {
     console.log("Server is running");
 });

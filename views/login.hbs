@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login - Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="css/styles-login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Website Logo">
+            </div>
+            <div class="name-logo">
+                <img src="images/Name-logo.png" alt="Name Logo">
+            </div>
+        </div>
+        <form id="loginForm">
+            <input type="text" name="username" placeholder="Username" required id="username">
+            <input type="password" name="password" placeholder="Password" required id="password">
+            <input type="submit" value="Login">
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+            <button class="guest-button" onclick="window.location.href= '/' ">Continue as Guest</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-buttons">
+            <button onclick="window.location.href='/about'">About Us</button>
+            <button onclick="window.location.href='/contact'">Contact Us</button>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            
+            fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Login failed. Please try again.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                if (data.loggedInUser) {
+                    // Redirect to profile page upon successful login
+                    window.location.href = "/";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Login failed. Please try again.");
+            });
+        });
+    </script>
+
+</body>
+
+</html>

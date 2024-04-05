@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="css/styles-educonnect.css">
+</head>
+
+<body>
+     <header>
+       <!-- Changed this whole div -->
+        <div class="header-container">
+            <div class="logo-group">
+                <div class="logo">
+                    <a href="/">
+                    <img src="/images/logo.png" alt="Website Logo">
+                    </a>
+                </div>
+                <div class="name-logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
+                </div>
+            </div>
+            <div class="login">
+                {{#unless isAuthenticated}}
+                    <button class="login-button" id="loginButton" onclick="window.location.href='/login'">Login</button>
+                {{/unless}}
+            </div>
+            <div class="search-wrapper">
+                <form action="/search" method="GET">
+                <input type="search" id="search" name="search" placeholder="Search..." required>
+                </form>
+            </div>
+            {{#if user.profilePicture}}
+                <img class="profile-pic" src="{{user.profilePicture}}">
+            {{else}}
+                <img class="profile-pic" src="images/logo.png">
+            {{/if}}
+        </div>
+        <!-- Edits end here -->
+    </header>
+
+    <div class="container">
+        <h1>Welcome to Lasallian EduConnect Hub</h1>
+        <i class="description">Lasallian EduConnect Pub provides students with a place to ask their peers for advice and assistance on a range of academic issues. Students can exchange tips on how to handle the coursework, make appropriate schedules, and navigate campus life in this forum.</i>
+    </div>
+
+    <section class="blog-info">
+        <h3>Explore Student Communities</h3>
+        <p>Discover and participate in various student communities and threads. Find information about pre-enlistment, enlistment, and other student-related concerns.</p>
+
+        <div class="blog-gallery">
+            <a href="/pre-enlist" class="blog-item">
+                <img src="images/animosys.png" alt="Pre-Enlistment Community">
+                <h4>Pre-Enlistment Community</h4>
+                <p>Get insights and tips about pre-enlistment activities and course selection.</p>
+            </a>
+
+            <a href="/enlistment" class="blog-item">
+                <img src="images/enlist.png" alt="Enlistment Community">
+                <h4>Enlistment Community</h4>
+                <p>Discuss and share experiences related to the enlistment process and course registration.</p>
+            </a>
+
+            <a href="/student-concerns" class="blog-item">
+                <img src="images/dlsu.png" alt="Student Concerns Thread">
+                <h4>Student Concerns Thread</h4>
+                <p>Join conversations about various student-related concerns and engage with the community..</p>
+            </a>
+        </div>
+    </section>
+</body>
+
+</html>

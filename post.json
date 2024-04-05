@@ -1,0 +1,122 @@
+[
+    {
+        "username": "Wendy ",
+        "postTitle": "Flowchart",
+        "postContent": "Hello! I'm from CCS, where can I see my flowchart specifically for IS students? tyia:>",
+        "postTag": "Pre-Enlistment",
+        "upvotes": "2",
+        "downvotes":"0",
+        "comments":"2",
+        "shares":"1"
+    },
+
+    {
+        "username": "Giselle Grande",
+        "postTitle": "Flowchart",
+        "postContent": "Hello! I'm an ID123 and new to DLSU terms, may I ask what is animosys, pre-enlistment, and bakit lagi kasalanan ng ID123? T.T",
+        "postTag": "Pre-Enlistment",
+        "upvotes": "5",
+        "downvotes":"1",
+        "comments":"4",
+        "shares":"3"
+    },
+
+    {
+        "username": "Ross Green",
+        "postTitle": "Deadline",
+        "postContent": "when is the deadline of pre-enlistment? Can it be extended?",
+        "postTag": "Pre-Enlistment",
+        "upvotes": "2",
+        "downvotes":"0",
+        "comments":"3",
+        "shares":"1"
+    },
+
+    {
+        "username": "John Smith",
+        "postTitle": "Facility is no longer available (99999,99999)",
+        "postContent": "I tried enlisting but the page says 'Facility is no longer available (99999,99999)' what should i do?",
+        "postTag": "Pre-Enlistment",
+        "upvotes": "5",
+        "downvotes":"0",
+        "comments":"1",
+        "shares":"1"
+    },
+
+    {
+        "username": "Lionel Messi",
+        "postTitle": "Enlistment system",
+        "postContent": "This isn't really a question but a comment on the enlistment system of DLSU. Why is it that the first honors students that get priority for enlistment? Sure, it's a reward, but it makes it even more difficult for the already struggling students since they might have to go through tougher schedules or terror profs. I hope there could be a more fair system for all students.",
+        "postTag": "Enlistment",
+        "upvotes": "2",
+        "downvotes":"0",
+        "comments":"2",
+        "shares":"1"
+    },
+
+    {
+        "username": "Lebron James",
+        "postTitle": "MLS",
+        "postContent": "How is it possible that for a school that's supposed to be one of the best in the country, it still has outdated systems such as MLS? It's often down, making it difficult for us students to enlist or do anything on mls or animosys that has a due date since lots of students are simultaneously visiting the sites.",
+        "postTag": "Enlistment",
+        "upvotes": "22",
+        "downvotes":"5",
+        "comments":"3",
+        "shares":"6"
+    },
+
+    {
+        "username": "John Smith",
+        "postTitle": "Question about enlistment slots",
+        "postContent": "Does the opening of 10 slots every enlistment day apply to all subjects in all colleges? Because right now, I'm concerned that all my subjects have limited slots and it looks like I might not be able to secure a slot.",
+        "postTag": "Enlistment",
+        "upvotes": "2",
+        "downvotes":"0",
+        "comments":"3",
+        "shares":"1"
+    },
+
+    {
+        "username": "Tsukino",
+        "postTitle": "LF CSARCH1 Study Group",
+        "postContent": "I am an ID 122 student taking BSCS-NIS. I'm looking for some people to study with for the upcoming CSARCH1 exam next week :D",
+        "postTag": "Student Concerns",
+        "upvotes": "12",
+        "downvotes":"0",
+        "comments":"3",
+        "shares":"2"
+    },
+
+    {
+        "username": "John Smith",
+        "postTitle": "Any good places to study?",
+        "postContent": "Hello po! Anyone have recos for great spots to study and chill?",
+        "postTag": "Student Concerns",
+        "upvotes": "7",
+        "downvotes":"0",
+        "comments":"3",
+        "shares":"0"
+    },
+
+    {
+        "username": "Hikari Shinji",
+        "postTitle": "cheap food in dlsu",
+        "postContent": "i'm on a tight budget so does anyone know some good cheap food joints around DLSU? around less than 150 pesos or something. thanks!",
+        "postTag": "Student Concerns",
+        "upvotes": "10",
+        "downvotes":"3",
+        "comments":"3",
+        "shares":"1"
+    },
+
+    {
+        "username": "Ross Green",
+        "postTitle": "Building Abbreviations",
+        "postContent": "ID123 student here! Just want to ask about what the abbreviations for the buildings in DLSU mean hehe :>",
+        "postTag": "Student Concerns",
+        "upvotes": "12",
+        "downvotes":"1",
+        "comments":"5",
+        "shares":"2"
+    }
+]

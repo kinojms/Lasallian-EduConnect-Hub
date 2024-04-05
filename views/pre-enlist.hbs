@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="/css/styles-postpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/efbf6e3944.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+     <header>
+       <!-- Changed this whole div -->
+        <div class="header-container">
+            <div class="logo-group">
+                <div class="logo">
+                    <a href="/">
+                    <img src="/images/logo.png" alt="Website Logo">
+                    </a>
+                </div>
+                <div class="name-logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
+                </div>
+            </div>
+            <div class="login">
+                {{#unless isAuthenticated}}
+                    <button class="login-button" id="loginButton" onclick="window.location.href='/login'">Login</button>
+                {{/unless}}
+            </div>
+            <div class="search-wrapper">
+                <form action="/search" method="GET">
+                <input type="search" id="search" name="search" placeholder="Search..." required>
+                </form>
+            </div>
+            {{#if user.profilePicture}}
+                <img class="profile-pic" src="{{user.profilePicture}}">
+            {{else}}
+                <img class="profile-pic" src="images/logo.png">
+            {{/if}}
+        </div>
+        <!-- Edits end here -->
+    </header>
+
+        <div class="sidebar">
+            <ul>
+                <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+                <!-- Added an ID for this link (for toggle feature) -->
+                <li><a id="accountButton" href="#" onclick="navigateToProfile()"><i class="fa fa-user"></i> Account </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+                <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+                <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+                <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+            </ul>
+        </div>
+
+        <div class="divider"> </div>
+
+        <div class="main-content">
+            <div class="page-header">
+                <img src="images/pre-enlist header.png" alt="Header">
+                <div class="text-overlay">
+                <h2>Pre-Enlistment</h2>
+                </div>
+            </div>
+
+            <!-- Create Post button -->
+            {{#if isAuthenticated}}
+                <a href="/create-post" id="create-post-button">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+            {{else}}
+                <a href="#" id="create-post-button" onclick="alert('You must be logged in to create a post.'); return false;">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+            {{/if}}
+
+        </div>
+
+        <div class="post-container">
+            <!-- Posts -->
+            {{#each posts}}
+                <a href="/post/{{this._id}}">
+                    <div class="post">
+                        <div class="user-header">
+                            <div class="user-info">
+                               {{#if userIsAuthor}}
+                                    <img class="profile-pic" src="{{user.profilePicture}}">
+                                {{else}}
+                                    <img class="profile-pic" src="/images/logo.png">
+                                {{/if}}
+                                <span class="username">{{this.username}}</span>
+                            </div>
+                        </div>
+                        <div class="post-header">
+                            <h2>{{this.postTitle}}</h2>
+                        </div>
+                        <div class="post-content">
+                            <p>{{this.postContent}}</p>
+                        </div>
+                        <div class="post-actions">
+                            <div class="vote-container">
+                                <upvote id="upvoteBtn" class="fa fa-arrow-up"> {{ upvotes }}</upvote>
+                            </div>
+                            <div class="vote-container">
+                                <downvote class="fa fa-arrow-down"> {{ downvotes }}</downvote>
+                            </div>
+                            <div class="vote-container">
+                                <comment class="fa fa-comment"> {{ comments.length }}</comment>
+                            </div>
+                            <div class="vote-container">
+                                <share class="fa fa-share"> {{ shares }}</share>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {{/each}}
+        </div>
+</body>
+<script>
+function navigateToProfile() {
+    fetch('/check-authentication')
+        .then(response => response.json())
+        .then(data => {
+            if (data.isAuthenticated) {
+                window.location.href = '/profile';
+            } else {
+                alert('Please login first!');
+                window.location.href = '/login';
+            }
+        });
+}
+</script>
+</html>

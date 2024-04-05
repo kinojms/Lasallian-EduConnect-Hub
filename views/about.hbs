@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="/css/styles-about.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <!-- Changed this whole div -->
+        <div class="header-container">
+            <div class="logo-group">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Website Logo">
+                </div>
+                <div class="name-logo">
+                    <img src="images/Name-logo.png" alt="Name Logo">
+                </div>
+            </div>
+            <div class="login">
+                {{#unless isAuthenticated}}
+                    <button class="login-button" id="loginButton" onclick="window.location.href='/login'">Login</button>
+                {{/unless}}
+            </div>
+        </div>
+        <!-- Edits end here -->
+    </header>
+
+        <div class="sidebar">
+            <ul>
+                <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+                <!-- Added an ID for this link (for toggle feature) -->
+                <li><a id="accountButton" href="/profile"><i class="fa fa-user"></i> Account </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+                <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+                <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+                <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <h1>About Us</h1>
+        </div>
+
+        <div class="blog-gallery">
+            <!--member 1-->
+            <div class="container">
+                <a href="https://www.facebook.com/casophiaa" class="blog-item">
+                    <img src="images/seb.jpg" alt="seb">
+                    <h4>Sebastian Figueroa</h4>
+                </a>
+            </div>
+
+            <!--member 2-->
+            <div class="container">
+                <a href="https://www.facebook.com/justinmorrie.sacdalan" class="blog-item">
+                    <img src="images/justin.jpg" alt="justin">
+                    <h4>Justin Morrie Sacdalan</h4>
+                </a>
+            </div>
+
+            <!--member 3-->
+            <div class="container">
+            <a href="https://www.facebook.com/sebfigueroaa" class="blog-item">
+                <img src="images/sophie.jpg" alt="sophie">
+                    <h4>Sophia Reine Orencia</h4>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

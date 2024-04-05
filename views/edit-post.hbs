@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Post </title>
+        <link rel="stylesheet" href="/css/styles-createPost.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://kit.fontawesome.com/efbf6e3944.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        {{#if errorMessage}}
+             <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+        {{/if}}
+
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="Website Logo">
+                </div>
+                <div class="name-logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
+                </div>
+            </div>
+        </header>
+
+        <div class="sidebar">
+            <ul>
+                <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+                <li><a href="/profile"><i class="fa fa-user"></i> Account </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+                <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+                <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+                <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+            </ul>
+        </div>
+
+        <div class="divider"> </div>
+
+        <div class="main-content">
+            <div class="page-header">
+                <img src="/images/pre-enlist header.png" alt="Header">
+                <div class="text-overlay">
+                    <h2>Edit Comment</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="create-post-container">
+            <form class="post-form" action="/post/{{post._id}}/edit" method="POST">
+            
+                <div class="form-group">
+                    <label for="postTitle">Title:</label><br>
+                    <input type="text" id="postTitle" name="postTitle" value="{{post.postTitle}}"><br>
+                </div>
+        
+                <div class="form-group">
+                     <label for="postContent">Content:</label><br>
+                    <textarea id="postContent" name="postContent">{{post.postContent}}</textarea><br>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">Update Post</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>

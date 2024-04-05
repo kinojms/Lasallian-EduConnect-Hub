@@ -1,0 +1,334 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('/images/bkg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #087830;
+  color: #fff;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* Edits start here */
+/* Added justify-content */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* For the container */
+.logo-group {
+  display: flex;
+  align-items: center;
+}
+
+/* Added this for the Login Button */
+
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic-edit {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.login {
+  position: absolute;
+  right: 100px;
+}
+
+.login-button {
+  width: 100px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #3498db9a;
+}
+
+/* Additions end here */
+
+.logo img,
+.name-logo img {
+  max-height: 40px; 
+  width: auto;
+  margin-right: 10px;
+}
+
+.sidebar {
+  width: 150px;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  overflow: hidden;
+  top: 58px;
+  left: 0;
+  border-right: 1.5px solid #ddd;
+}
+
+
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 15px;
+  text-align: center;
+}
+
+.sidebar .divider {
+  margin-top: 10px;
+}
+
+.sidebar .divider span {
+  display: block;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #087830;
+  display: block;
+}
+
+.main-content {
+  margin-left: 50px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.post-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-left: 160px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.page-header {
+  padding: 10px;
+  margin-top: 40px;
+  margin-left: 80px;
+  margin-right: 0px;
+}
+
+.page-header img {
+  width: 101.5%;
+  height: 190px;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 150px;
+  left: 400px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 2px black;
+}
+
+.text-overlay h2 {
+  margin: 0;
+  font-size: 4vw;
+}
+
+.post-header {
+  text-align: center;
+}
+
+.post-header h2 {
+  color: #333;
+  text-align: justify;
+}
+
+.post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 1px;
+  margin-left: 5px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.upvote,
+.downvote,
+.comment,
+.share {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.vote-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.vote-container upvote {
+  border-radius: 4px;
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.vote-container downvote {
+  border-radius: 4px;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.vote-container comment {
+  border-radius: 4px;
+  background-color: #087830;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.vote-container share {
+  border-radius: 4px;
+  background-color: #807979;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.post-header {
+  text-align: center;
+}
+
+.post-header h2 {
+  color: #333;
+  text-align: justify;
+}
+
+.post-content {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  max-width: 250px; 
+  float: right;
+  margin-left: 10px;
+}
+
+.post-actions {
+  clear: both;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+#create-post-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #008CBA;
+  color: white;
+  border-radius: 50%;
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+#create-post-button:hover {
+  background-color: #006D9C;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: gray
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+
+}
+
+.user-avatar {
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.search-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: .25rem;
+  margin-right: auto; /* Change to auto to center */
+  margin-left: auto; /* Change to auto to center */
+  padding: 5px; /* Add padding for roundness */
+  border-radius: 20px; /* Increase border-radius for roundness */
+  background-color: white; /* Add background color */
+  width: fit-content; /* Adjust width to content */
+  align-items: center; /* Center vertically */
+}
+
+input {
+  font-size: 1rem;
+  border: none; /* Remove default input border */
+  outline: none; /* Remove outline */
+  padding: 5px; /* Add padding for appearance */
+  border-radius: 20px; /* Add border-radius */
+  width: 200px; /* Adjust width as needed */
+}
+
+.search-button:hover {
+  background-color: #2980b9; /* Example color on hover */
+}

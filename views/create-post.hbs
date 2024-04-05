@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lasallian EduConnect Hub</title>
+        <link rel="stylesheet" href="/css/styles-createPost.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://kit.fontawesome.com/efbf6e3944.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Website Logo">
+                </div>
+                <div class="name-logo">
+                    <img src="images/Name-logo.png" alt="Name Logo">
+                </div>
+            </div>
+        </header>
+
+        <div class="sidebar">
+            <ul>
+                <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+                <li><a href="/profile"><i class="fa fa-user"></i> Account </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+                <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+                <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+                <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+            </ul>
+        </div>
+
+        <div class="divider"> </div>
+
+        <div class="main-content">
+            <div class="page-header">
+                <img src="images/pre-enlist header.png" alt="Header">
+                <div class="text-overlay">
+                    <h2>Create a Post</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="create-post-container">
+            <form class="post-form" action="/create-post" method="POST">
+                <div class="form-group">
+                    <label for="post-title">Title:</label>
+                    <input type="text" id="post-title" name="postTitle" required>
+                </div>
+                <!-- Radio Buttons -->
+                <div class="form-group">
+                    <label for="pre-enlist">Pre-Enlistment</label>
+                    <input type="radio" id="pre-enlist" name="postTag" value="Pre-Enlistment" required><br>
+
+                    <label for="enlistment">Enlistment</label>
+                    <input type="radio" id="enlistment" name="postTag" value="Enlistment" required><br>
+
+                    <label for="student-concerns">Student Concerns</label>
+                    <input type="radio" id="student-concerns" name="postTag" value="Student Concerns" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-content">Content:</label>
+                    <textarea id="post-content" name="postContent" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Create Post</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

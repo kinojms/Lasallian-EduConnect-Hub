@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="/css/styles-profile.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Website Logo">
+            </div>
+            <div class="name-logo">
+                <img src="images/Name-logo.png" alt="Name Logo">
+            </div>
+            {{#if user.profilePicture}}
+                <img class="profile-pic" src="{{user.profilePicture}}">
+            {{else}}
+                <img class="profile-pic" src="images/logo.png">
+            {{/if}}
+        </div>
+    </header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+            <li><a href="/profile"><i class="fa fa-user"></i> Account </a></li>
+
+            <li class="divider"><span></span></li>
+
+            <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+            <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+            <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+
+            <li class="divider"><span></span></li>
+
+            <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+            <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <span class="user-profile">User Profile</span>
+        </div>
+        <ul id="userDetails">
+            <li class="divider"><span></span></li>
+
+            <li class="userDetails">
+                <span class="edit-profile">
+                    <div class="profile-pic-container">
+                        {{#if user.profilePicture}}
+                            <img class="profile-pic-edit" src="{{user.profilePicture}}">
+                        {{else}}
+                            <img class="profile-pic-edit" src="images/default-profile.jpg">
+                        {{/if}}
+                        <form action="/upload-profile-picture" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="profilePicture" accept="image/*">
+                            <input type="submit" value="Upload" class="upload-button">
+                        </form>
+                    </div>
+                </span>
+            </li>
+
+            <li class="user-detail">
+                <div class="user-info-container">
+                    <form action="/edit-profile" method="POST">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" value="{{user.username}}" required><br><br>
+                        
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" value="{{user.firstName}}" required><br><br>
+                        
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" value="{{user.lastName}}" required><br><br>
+                        
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" value="{{user.email}}" required><br><br>
+                        
+                        <input type="submit" value="Save Changes">
+                    </form>
+                </div>
+            </li>
+
+            <div class="update-password-form">
+                <form id="changePasswordForm">
+                    <input type="password" id="currentPassword" name="currentPassword" placeholder="Current Password" required>
+                    <input type="password" id="newPassword" name="newPassword" placeholder="New Password" required>
+                    <input type="submit" value="Change Password">
+                </form>
+            </div>
+
+        </ul>
+        <button class = "logout-button" id="logoutButton" onclick="location.href='/logout'">Logout</button>
+    </div>
+ 
+</body>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const form = document.querySelector('.update-password-form form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const currentPassword = document.querySelector('#currentPassword').value;
+        const newPassword = document.querySelector('#newPassword').value;
+
+        fetch('/update-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ currentPassword, newPassword })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const message = document.createElement('p');
+            message.textContent = data.message;
+            form.appendChild(message);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+</script>
+
+</html>

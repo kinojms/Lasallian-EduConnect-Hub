@@ -1,0 +1,199 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('images/bkg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #087830;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo img,
+.name-logo img {
+    max-height: 40px; 
+    width: auto;
+    margin-right: 10px;
+}
+
+.sidebar {
+    width: 150px;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    overflow: hidden;
+    top: 58px;
+    left: 0;
+    border-right: 1.5px solid #ddd;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar .divider {
+    margin-top: 10px;
+}
+
+.sidebar .divider span {
+    display: block;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #087830;
+    display: block;
+}
+
+.main-content {
+    margin-left: 50px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Create Post Main Container */
+.create-post-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin-left: 50px; /* Adjust the margin-left to move the container to the left */
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.post-form {
+    width: auto;
+    margin-left: 100px;
+    text-align: left; /* Align the form elements to the left */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 200px; /* Adjust the width as needed */
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input[type="radio"] {
+    margin-left: 0px;
+}
+
+.form-group label.radio-label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+
+.form-group input[type="radio"]:checked + label.radio-label:before {
+    background-color: #087830;
+}
+
+/* Submit Button */
+.form-group button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #087830;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group button[type="submit"]:hover {
+    background-color: #065e22;
+}
+
+/* --------------------------- */
+
+.page-header {
+    padding: 10px;
+    margin-top: 40px;
+    margin-left: 80px;
+    margin-right: 0px;
+}
+
+.page-header img {
+    width: 101.5%;
+    height: 190px;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 150px;
+    left: 400px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 2px black;
+}
+
+.text-overlay h2 {
+    margin: 0;
+    font-size: 4vw;
+}
+
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+

@@ -1,0 +1,218 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/images/bkg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #087830;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Edits start here */
+/* Added justify-content */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* For the container */
+.logo-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Added this for the Login Button */
+
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.login {
+    position: absolute;
+    right: 100px;
+}
+
+.login-button {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #3498db9a;
+}
+
+/* Added this for the Profile Pic */
+.profile-pic {
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    height: auto;
+}
+
+/* Additions end here */
+
+.logo img,
+.name-logo img {
+    max-height: 40px; 
+    width: auto;
+    margin-right: 10px;
+}
+
+.sidebar {
+    width: 150px;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    overflow: hidden;
+    top: 58px;
+    left: 0;
+    border-right: 1.5px solid #ddd;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar .divider {
+    margin-top: 10px;
+}
+
+.sidebar .divider span {
+    display: block;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #087830;
+    display: block;
+}
+
+.content-container {
+    background-color: #c7e7ce;
+    border-radius: 30px;
+    margin-top: 100px;
+    margin-left: 250px; /* Adjusted to accommodate the sidebar width */
+    margin-right: 100px;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+}
+
+.contact-form {
+    width: 45%;
+}
+
+.contact-info {
+    background-color: white;
+    margin-top: 100px;
+    width: 45%;
+    height: 45%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.contact-form h2{
+    color: #333;
+}
+
+.contact-info h2 {
+    color: #333;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input,
+textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #087830;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.contact-info p {
+    margin-left: 50px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.footer {
+    background-color: #087830;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.logomark {
+    position: absolute;
+    top: -50px; /* Adjust this value to control the spacing */
+}
+
+.logomark img {
+    max-height: 80px;
+    width: auto;
+}

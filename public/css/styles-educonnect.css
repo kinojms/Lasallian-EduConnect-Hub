@@ -1,0 +1,228 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/images/bkg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #087830;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Edits start here */
+/* Added justify-content */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* For the container */
+.logo-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Added this for the Login Button */
+
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* Added flex-grow to the .search-wrapper */
+.search-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: .25rem;
+    margin-right: auto; /* Change to auto to center */
+    margin-left: auto; /* Change to auto to center */
+    padding: 5px; /* Add padding for roundness */
+    border-radius: 20px; /* Increase border-radius for roundness */
+    background-color: white; /* Add background color */
+    width: fit-content; /* Adjust width to content */
+    align-items: center; /* Center vertically */
+}
+
+input {
+    font-size: 1rem;
+    border: none; /* Remove default input border */
+    outline: none; /* Remove outline */
+    padding: 5px; /* Add padding for appearance */
+    border-radius: 20px; /* Add border-radius */
+    width: 200px; /* Adjust width as needed */
+  }
+  
+  .search-button:hover {
+    background-color: #2980b9; /* Example color on hover */
+  }
+
+/* Moved the profile pic style to the right */
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px; /* Adjust margin to create space between search and profile pic */
+}
+
+.profile-pic-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.login {
+    position: absolute;
+    right: 20px; /* Adjust position */
+}
+
+.login-button {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #3498db9a;
+}
+
+
+/* Edits end here */
+
+.logo img,
+.name-logo img {
+    max-height: 40px; 
+    width: auto;
+    margin-right: 10px;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin-top: 90px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.container h1 {
+    color: #333;
+    margin-top: 15px;
+}
+
+.description{
+    color: gray;
+}
+
+.announcement {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-left: 40px solid #087830;
+}
+
+.announcement h2 {
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #087830;
+    font-size: 30px;
+}
+
+.announcement details{
+    color: black;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.blog-info {
+    text-align: center;
+    margin: 20px;
+}
+
+
+.blog-info h3 {
+    color: #333;
+}
+
+.blog-info p {
+    color: #555;
+}
+
+.blog-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.blog-item {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border-color: #333;
+}
+
+.blog-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.blog-item h4 {
+    color: #333;
+}
+
+.blog-item p {
+    color: #555;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.user-avatar {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    margin-right: 10px;
+}
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="/css/styles-login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-container">
+            <div class="logo">
+                <img src="/images/logo.png" alt="Website Logo">
+            </div>
+            <div class="name-logo">
+                <img src="/images/Name-logo.png" alt="Name Logo">
+            </div>
+        </div>
+        <form id="signup">
+            <input type="email" name="email" placeholder="Email Address (@gmail only)" pattern=".+@gmail\.com$" required>
+            <div class="div">
+                <input type="text" name="lastName" placeholder="Last Name" required>
+                <input type="text" name="firstName" placeholder="First Name" required>
+            </div>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Sign Up">
+        </form>
+        <div class="signup-link">
+            <p>Already have an account? <a href="/login">Log in</a></p>
+            <button class="guest-button" onclick="window.location.href='/'">Continue as Guest</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-buttons">
+            <button onclick="window.location.href='/about'">About Us</button>
+            <button onclick="window.location.href='/contact'">Contact Us</button>
+        </div>
+    </footer>
+
+    <script>
+    document.querySelector('#signup').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let data = {
+            email: document.querySelector('input[name="email"]').value,
+            lastName: document.querySelector('input[name="lastName"]').value,
+            firstName: document.querySelector('input[name="firstName"]').value,
+            username: document.querySelector('input[name="username"]').value,
+            password: document.querySelector('input[name="password"]').value
+        };
+
+        console.log(data);
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            if (!response.ok) {
+                // If the response is not ok, throw an error with the status text
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        }).then(json => {
+            console.log(json);
+            // Check if signup was successful
+            if (json.message === "Account created successfully!") {
+                // Redirect to profile page upon successful signup
+                window.location.href = "/profile";
+            } else {
+                // Handle unsuccessful signup, if needed
+                console.log('Signup unsuccessful:', json.message);
+            }
+        }).catch(e => {
+            // Display an alert with the error message
+            alert('There was a problem with the signup: ' + e.message);
+        });
+    });
+    </script>
+</body>
+
+</html>

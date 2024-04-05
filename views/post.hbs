@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="/css/styles-viewpost.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+     <header>
+       <!-- Changed this whole div -->
+        <div class="header-container">
+            <div class="logo-group">
+                <div class="logo">
+                    <a href="/">
+                    <img src="/images/logo.png" alt="Website Logo">
+                    </a>
+                </div>
+                <div class="name-logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
+                </div>
+            </div>
+            <div class="login">
+                {{#unless isAuthenticated}}
+                    <button class="login-button" id="loginButton" onclick="window.location.href='/login'">Login</button>
+                {{/unless}}
+            </div>
+            <div class="search-wrapper">
+                <form action="/search" method="GET">
+                <input type="search" id="search" name="search" placeholder="Search..." required>
+                </form>
+            </div>
+            {{#if user.profilePicture}}
+                <img class="profile-pic" src="{{user.profilePicture}}">
+            {{else}}
+                <img class="profile-pic" src="images/logo.png">
+            {{/if}}
+        </div>
+        <!-- Edits end here -->
+    </header>
+
+    <div class="sidebar">
+            <ul>
+                <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+                <!-- Added an ID for this link (for toggle feature) -->
+                <li><a id="accountButton" href="/profile"><i class="fa fa-user"></i> Account </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+                <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+                <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+
+                <li class="divider"><span></span></li>
+
+                <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+                <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+            </ul>
+    </div>
+
+    <div class="post-container">
+        <div class="post">
+            <div class="user-header">
+                <div class="user-info">
+
+                {{#if userIsAuthor}}
+                    <img class="profile-pic" src="{{user.profilePicture}}">
+                {{else}}
+                    <img class="profile-pic" src="/images/logo.png">
+                {{/if}}
+
+                    <span class="username">{{post.username}}</span>
+
+                    <div class="action-buttons">
+                        {{#if userIsAuthor}}
+                            <button class="edit-post" onclick="window.location.href='/post/{{post._id}}/edit'">Edit</button>
+                            <form action="/post/{{post._id}}/delete" method="POST">
+                                <button class="delete-post" type="submit">Delete</button>
+                            </form>
+                        {{/if}}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="post-header">
+                <h2>{{post.postTitle}}</h2>
+            </div>
+            <div class="post-content">
+                <p>{{post.postContent}}</p>
+                <div class="post-tag"><i class="fa fa-tag"></i>{{post.postTag}}</div>
+            </div>
+        </div>
+
+        <div class="comments-section" id="commentsSection1">
+            <form id="commentForm">
+                <textarea id="newComment" placeholder="Add a comment..."></textarea>
+                <button type="submit">Submit</button>
+            </form>
+
+            <h3> Comments </h3>
+            {{#each post.comments}}
+                <div class="comment">
+                    
+                    <div class="user-info">
+                        {{#if user.profilePicture}}
+                                <img class="profile-pic" src="{{user.profilePicture}}">
+                            {{else}}
+                                <img class="profile-pic" src="/images/logo.png">
+                            {{/if}}
+                        <span class="username">{{this.username}}</span>
+
+                        <div class="action-buttons"> <!-- Added a container for action buttons -->
+                        {{#if this.userIsAuthor}}
+                            <button class="edit-comment" onclick="window.location.href='/post/{{../post._id}}/comment/{{this._id}}/edit'">Edit</button>
+                            <form action="/post/{{../post._id}}/comment/{{this._id}}/delete" method="POST">
+                                <button type="submit" class="delete-comment">Delete</button>
+                            </form>
+                        {{/if}}
+                    </div>
+                    </div>
+                    <p>{{this.text}}</p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+<script>
+document.getElementById('commentForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var commentTextValue = document.getElementById('newComment').value;
+    fetch('/post/{{post._id}}/comment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: commentTextValue })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Create a new comment element
+        var comment = document.createElement('div');
+        comment.className = 'comment';
+        comment.onclick = function() { showButtons(this); };
+
+        // Create the user info element
+        var userInfo = document.createElement('div');
+        userInfo.className = 'user-info';
+        userInfo.style.display = 'flex';
+        userInfo.style.alignItems = 'center';
+
+        var img = document.createElement('img');
+        img.src = "{{user.profilePicture}}";
+        img.alt = "User Avatar";
+        img.className = "user-avatar";
+
+        var username = document.createElement('span');
+        username.className = 'username';
+        username.textContent = "{{user.username}}";
+
+        userInfo.appendChild(img);
+        userInfo.appendChild(username);
+
+        // Create the Edit and Delete buttons
+        var editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.className = 'edit-comment btn';
+        editButton.style.display = 'none';
+        editButton.onclick = function() {
+            window.location.href = '/post/{{post._id}}/comment/' + data.commentId + '/edit';
+        };
+
+        var deleteForm = document.createElement('form');
+        deleteForm.action = '/post/{{post._id}}/comment/' + data.commentId + '/delete';
+        deleteForm.method = 'POST';
+        deleteForm.className = 'delete-comment-form'; // Add a class to the form
+        deleteForm.style.display = 'none';
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'delete-comment btn';
+
+        deleteForm.appendChild(deleteButton);
+
+        // Add the Edit and Delete buttons to the user info
+        userInfo.appendChild(editButton);
+        userInfo.appendChild(deleteForm);
+
+        // Add the user info to the comment
+        comment.appendChild(userInfo);
+
+        // Create the comment text element
+        var commentText = document.createElement('p');
+        commentText.textContent = commentTextValue;
+
+        // Add the comment text to the comment
+        comment.appendChild(commentText);
+
+        // Add the comment to the comments section
+        var commentsSection = document.querySelector('.comments-section');
+        commentsSection.insertBefore(comment, commentsSection.childNodes[4]);
+
+        // Clear the comment form
+        document.getElementById('newComment').value = '';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+
+function showButtons(commentDiv) {
+    var editButton = commentDiv.querySelector('.edit-comment');
+    var deleteForm = commentDiv.querySelector('form');
+    if (editButton.style.display === 'none') {
+        editButton.style.display = 'inline-block';
+        deleteForm.style.display = 'inline-block';
+    } else {
+        editButton.style.display = 'none';
+        deleteForm.style.display = 'none';
+    }
+}
+</script>
+
+</body>
+
+</html>
+
+{{!-- THIS IS THE FINAL VERSION FOR CRUD --}}

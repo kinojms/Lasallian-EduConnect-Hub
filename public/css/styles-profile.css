@@ -1,0 +1,251 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;500&display=swap');
+
+body {
+    font-family: 'Noto Sans';
+    background-image: url('/images/bkg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #087830;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.name-logo {
+    flex: 2;
+}
+
+.logo img,
+.name-logo img {
+    max-height: 40px; 
+    width: auto;
+    margin-right: 10px;
+}
+
+.sidebar {
+    width: 150px;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    overflow: hidden;
+    top: 58px;
+    left: 0;
+    border-right: 1.5px solid #ddd;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar .divider {
+    margin-top: 10px;
+}
+
+.sidebar .divider span {
+    display: block;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #087830;
+    display: block;
+}
+
+.container{
+    height: auto;
+    margin-left: 200px;
+    margin-right: 50px;
+    margin-top: 110px;
+    background-color: #ffffffdd;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.edit-button{
+    background-color: #087830;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    align-items: end;
+    position: relative;
+}
+
+.edit-button:hover{
+    background-color: rgba(0, 112, 60, 0.505);
+}
+
+.logout-button{
+    background-color: #087830;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.logout-button:hover{
+    background-color: rgba(0, 112, 60, 0.505);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-pic{
+    position: relative;
+    width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    height: auto;
+}
+
+.user-profile{
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+.user-info{
+    display: flex;
+    font-family: 'Noto Sans';
+    margin-left: 10px;
+    justify-content: space-between;
+    left: 50px;
+}
+
+.user-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.container li {
+    padding: 15px;
+    text-align: left;
+    margin-left: 20px;
+    justify-content: space-between;
+}
+
+.container .divider span {
+    display: block;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.update-password-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.update-password-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.update-password-form input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.update-password-form input[type="submit"] {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #087830;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.update-password-form input[type="submit"]:hover {
+    background-color: rgba(0, 112, 60, 0.505);
+}
+
+.upload-button {
+    background-color: #087830;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.upload-button:hover {
+    background-color: rgba(0, 112, 60, 0.505);
+}
+
+.profile-pic-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

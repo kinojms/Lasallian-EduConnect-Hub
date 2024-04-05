@@ -1,0 +1,162 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/images/bkg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #087830;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Edits start here */
+/* Added justify-content */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* For the container */
+.logo-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Added this for the Login Button */
+
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.login {
+    position: absolute;
+    right: 100px;
+}
+
+.login-button {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #3498db9a;
+}
+
+/* Added this for the Profile Pic */
+.profile-pic {
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    height: auto;
+}
+
+/* Additions end here */
+
+.logo img,
+.name-logo img {
+    max-height: 40px; 
+    width: auto;
+    margin-right: 10px;
+}
+
+.sidebar {
+    width: 150px;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    overflow: hidden;
+    top: 58px;
+    left: 0;
+    border-right: 1.5px solid #ddd;
+}
+
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar .divider {
+    margin-top: 10px;
+}
+
+.sidebar .divider span {
+    display: block;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #087830;
+    display: block;
+}
+
+.blog-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin-top: 90px;
+    margin-left: 170px;
+    margin-right: 25px;
+}
+
+.container h1 {
+    color: #333;
+    margin-top: 15px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.blog-item h4 {
+    color: #333;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}

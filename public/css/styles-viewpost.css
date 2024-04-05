@@ -1,0 +1,496 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/images/bkg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #087830;
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Edits start here */
+/* Added justify-content */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* For the container */
+.logo-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Added this for the Login Button */
+
+.login {
+    position: absolute;
+    right: 100px;
+}
+
+.login-button {
+    width: 100px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #3498db9a;
+}
+
+/* Added this for the Profile Pic */
+.profile-pic {
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    height: auto;
+}
+
+/* Edits end here */
+.logo img,
+.name-logo img {
+  max-height: 40px; 
+  width: auto;
+  margin-right: 10px;
+}
+
+.sidebar {
+    width: 150px;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    overflow: hidden;
+    top: 58px;
+    left: 0;
+    border-right: 1.5px solid #ddd;
+}
+
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar .divider {
+    margin-top: 10px;
+}
+
+.sidebar .divider span {
+    display: block;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #087830;
+    display: block;
+}
+
+.post-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin-left: 160px;
+    margin-right: 10px;
+    margin-top: 65px;
+}
+
+.post-header {
+    text-align: center;
+}
+
+.post-header h2 {
+    color: #333;
+    text-align: justify;
+}
+
+.post {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 1px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.upvote,
+.downvote,
+.comment,
+.share {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.vote-container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.vote-container upvote {
+    border-radius: 4px;
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px;
+    margin-right: 2px;
+}
+
+.vote-container downvote {
+    border-radius: 4px;
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px;
+    margin-right: 2px;
+}
+
+.vote-container comment {
+    border-radius: 4px;
+    background-color: #087830;
+    color: #fff;
+    padding: 8px;
+    margin-right: 2px;
+}
+
+.vote-container share {
+    border-radius: 4px;
+    background-color: #807979;
+    color: #fff;
+    padding: 8px;
+    margin-right: 2px;
+}
+
+.post-content {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    max-width: 250px; 
+    float: right;
+    margin-left: 10px;
+}
+
+.post-actions {
+    clear: both;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.sidebar-right {
+    width: 200px;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    overflow: hidden;
+    top: 58px;
+    right: 0; /* Position it on the right side */
+    border-left: 1.5px solid #ddd;
+}
+
+.sidebar-right h3 {
+    background-color: transparent;
+    color: #087830;
+    padding: 5px;
+    margin-bottom: 1px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.sidebar-right ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar-right li {
+    padding: 3px;
+    text-align: center;
+}
+
+.sidebar-right a {
+    text-decoration: none;
+    color: #087830;
+    display: block;
+    padding: 5px; 
+    border: 1px solid #087830;
+    border-radius: 2px; 
+    margin-bottom: 1px;
+}
+
+
+.sidebar-right divider {
+    margin-top: 1px;
+}
+
+.divider span {
+    display: block;
+    height: 2px;
+    background-color: #ddd;
+    margin: 1px -20px;
+}
+
+.post-tag {
+    background-color: #4CAF50; 
+    color: #fff; 
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 15px; /* Optional: Add border-radius for rounded corners */
+    display: inline-block; /* Make it inline */
+    margin-bottom: 10px; /* Adjust spacing between tag and content */
+    font-size: 12px;
+}
+
+.comments-section {
+    margin-top: 20px; /* Add margin to separate comments from the original post content */
+}
+
+.comments-section h3 {
+    text-align: left; /* Align the heading to the left */
+}
+
+.comment {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.comment-time {
+    color: #888;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    position: absolute;
+    right: 50px;
+}
+
+.edit-comment,
+.delete-comment {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Reduced border-radius for smaller buttons */
+    padding: 3px 6px; /* Adjusted padding for smaller buttons */
+    margin-left: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transform: scale(0.8); /* Adjust the scale factor to make the buttons smaller */
+}
+
+.edit-comment:hover,
+.delete-comment:hover {
+    background-color: #45a049;
+}
+
+
+.comment p{
+    text-align: justify;
+}
+
+.user-avatar {
+    width: 40px; /* Adjust the width of the avatar as needed */
+    height: 40px; /* Adjust the height of the avatar as needed */
+    border-radius: 50%; /* Make the avatar circular */
+    margin-right: 10px; /* Add some margin between avatar and username */
+}
+
+.add-comment-btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Adjust spacing between the button and comments */
+}
+
+.comment a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* new addition */
+#commentBox {
+    width: 100%; 
+}
+
+#newComment {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.edit-pic {
+    width: 40px; /* Adjust the width of the avatar as needed */
+    height: 40px; /* Adjust the height of the avatar as needed */
+    border-radius: 50%; /* Make the avatar circular */
+    margin-right: 10px; /* Add some margin between avatar and username */
+}
+
+.search-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: .25rem;
+    margin-right: auto; /* Change to auto to center */
+    margin-left: auto; /* Change to auto to center */
+    padding: 5px; /* Add padding for roundness */
+    border-radius: 20px; /* Increase border-radius for roundness */
+    background-color: white; /* Add background color */
+    width: fit-content; /* Adjust width to content */
+    align-items: center; /* Center vertically */
+}
+
+input {
+    font-size: 1rem;
+    border: none; /* Remove default input border */
+    outline: none; /* Remove outline */
+    padding: 5px; /* Add padding for appearance */
+    border-radius: 20px; /* Add border-radius */
+    width: 200px; /* Adjust width as needed */
+}
+
+.search-button:hover {
+    background-color: #2980b9; /* Example color on hover */
+}
+
+  
+  input {
+    font-size: 1rem;
+  }
+
+  .edit-post,
+.edit-comment {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 10px 20px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.edit-post:hover,
+.edit-comment:hover {
+    background-color: white;
+    color: black;
+}
+
+.delete-post,
+.delete-comment {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 10px 20px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.delete-post:hover,
+.delete-comment:hover {
+    background-color: white;
+    color: black;
+}
+
+.submit-post {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 10px 20px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.submit-post:hover {
+    background-color: white;
+    color: black;
+}
+
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}

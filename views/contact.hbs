@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Lasallian EduConnect Hub</title>
+    <link rel="stylesheet" href="/css/styles-contact.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("pJkOAmze0SoMu4yr9");
+        })();
+    </script>
+</head>
+
+<body>
+    <header>
+        <!-- Changed this whole div -->
+        <div class="header-container">
+            <div class="logo-group">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Website Logo">
+                </div>
+                <div class="name-logo">
+                    <img src="images/Name-logo.png" alt="Name Logo">
+                </div>
+            </div>
+            <div class="login">
+                {{#unless isAuthenticated}}
+                    <button class="login-button" id="loginButton" onclick="window.location.href='/login'">Login</button>
+                {{/unless}}
+            </div>
+        </div>
+        <!-- Edits end here -->
+    </header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+            <!-- Added an ID for this link (for toggle feature) -->
+            <li><a id="accountButton" href="/profile"><i class="fa fa-user"></i> Account </a></li>
+
+            <li class="divider"><span></span></li>
+
+            <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+            <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+            <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+
+            <li class="divider"><span></span></li>
+
+            <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+            <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+        </ul>
+    </div>
+
+    <div class="content-container">
+        <div class="contact-container">
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <form id="contact-form">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" required> <br>
+
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" required><br>
+
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea><br>
+
+                    <button type="submit">Send Message</button><br>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <div class="logomark">
+                    <img src="images/logo.png" alt="Website Logo">
+                </div>
+                <p>Email: lasallianeduconnect@gmail.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: De La Salle University Malate, Manila </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("contact-form").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                let params = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    message: document.getElementById("message").value
+                };
+                
+                emailjs.send("service_2oubpic", "template_csfh5wd", params)
+                .then(function(response) {
+                    alert("Email Sent Successfully! " + response.status);
+                })
+                .catch(function(error) {
+                    console.error("Error sending email:", error);
+                    alert("Error sending email. Please try again later.");
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -17,7 +17,7 @@ const routes = require('./routes/route');
 const app = express();
 
 // MONGO_URL="mongodb://localhost:27017/MCO";
-mongoose.connect('mongodb://localhost:27017/MCO');
+//mongoose.connect('mongodb://localhost:27017/MCO');
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://tsukino:uElnJfxOaCI5Vspj@mco.qpmivzx.mongodb.net/?retryWrites=true&w=majority&appName=MCO";

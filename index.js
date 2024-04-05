@@ -1,4 +1,5 @@
 const express = require('express');
+const hbs = require('hbs');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const session = require('express-session');

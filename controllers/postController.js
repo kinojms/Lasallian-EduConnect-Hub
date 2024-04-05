@@ -1,5 +1,5 @@
-const PostModel = require("../models/postModel");
-const CommentModel = require("../models/commentModel");
+const PostModel = require("../models/PostModel");
+const CommentModel = require("../models/CommentModel");
 
 //PRE-ENLISTMENT
 exports.createPreEnlistPost = (req, res) => {

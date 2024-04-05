@@ -8,7 +8,7 @@ require('dotenv').config();
 const postController = require('../controllers/postController');
 const userController = require('../controllers/userController');
 
-const UserModel = require('../models/userModel');
+const UserModel = require('../models/UserModel');
 
 const app = express();
 

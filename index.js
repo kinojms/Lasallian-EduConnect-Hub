@@ -19,7 +19,7 @@ const app = express();
 // MONGO_URL="mongodb://localhost:27017/MCO";
 //mongoose.connect('mongodb://localhost:27017/MCO');
 
-const uri = "mongodb+srv://tsukino:<password>@mco.qpmivzx.mongodb.net/?retryWrites=true&w=majority&appName=MCO";
+const uri = "mongodb+srv://tsukino:uElnJfxOaCI5Vspj@mco.qpmivzx.mongodb.net/?retryWrites=true&w=majority&appName=MCO";
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 

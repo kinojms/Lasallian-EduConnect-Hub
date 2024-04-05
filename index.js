@@ -1,5 +1,4 @@
 const express = require('express');
-const hbs = require('hbs');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
@@ -23,6 +22,16 @@ mongoose.connect(uri, clientOptions).then(() => {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 }).catch((error) => {
     console.error('Error connecting to MongoDB:', error);
+});
+
+// Create an instance of express-handlebars
+const hbs = exphbs.create({ 
+    extname: '.hbs',
+    layoutsDir: __dirname + '/views/layouts/', // Set the layouts directory
+    defaultLayout: false, // Disable default layout
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true
+    }
 });
 
 app.set("view engine", "ejs");

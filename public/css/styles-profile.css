@@ -154,8 +154,12 @@ header {
 }
 
 .user-profile{
-    margin-left: 20px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
     font-size: 30px;
+    color:#087830;
+    font-weight:500;
 }
 
 .user-info{
@@ -248,4 +252,154 @@ header {
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.post-header {
+  text-align: center;
+  text-decoration: none;
+}
+
+.post-header h2 {
+  color: #333;
+  text-align: justify;
+  text-decoration: none;
+  color: #3498db;
+}
+
+.post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 1px;
+  margin-left: 5px;
+}
+
+.post-content {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  max-width: 250px; 
+  float: right;
+  margin-left: 10px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: gray
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+
+}
+
+.user-avatar {
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.upvote,
+.downvote,
+.comment,
+.share {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.vote-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.vote-container upvote {
+  border-radius: 4px;
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.vote-container downvote {
+  border-radius: 4px;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.vote-container comment {
+  border-radius: 4px;
+  background-color: #087830;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.comments-section {
+  margin-top: 20px; /* Add margin to separate comments from the original post content */
+}
+
+.comments-section h3 {
+  text-align: left; /* Align the heading to the left */
+}
+
+.comment {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.comment-user{
+  font-weight:700;
+  margin-right: 1050px;
+  color:grey;
+}
+
+p{
+  text-align: justify;
+  font-size: 20px;
+  margin-left: 50px;
+}
+
+.comment a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+/* new addition */
+#commentBox {
+  width: 100%; 
 }

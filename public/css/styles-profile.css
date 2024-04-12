@@ -36,8 +36,8 @@ header {
 }
 
 .profile-pic-edit {
-    width: 100px;
-    height: 100px;
+    width: 100;
+    height: auto;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -165,9 +165,12 @@ header {
 .user-info{
     display: flex;
     font-family: 'Noto Sans';
-    margin-left: 10px;
+    margin-left: -4px;
     justify-content: space-between;
-    left: 50px;
+}
+
+username {
+  font-weight: bold;
 }
 
 .user-detail {
@@ -249,9 +252,13 @@ header {
 }
 
 .profile-pic-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  min-width: 100px; /* Set minimum width */
+  min-height: 100px; /* Set minimum height */
+  overflow: hidden;
+  border-radius: 50%; /* Ensures the image is circular */
+  margin-right: 20px; /* Adjust the margin as needed */
 }
 
 .post-header {
@@ -296,17 +303,15 @@ header {
 }
 
 .user-header {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 5px;
+  margin-left: 100px;
   font-size: 12px;
-  color: gray
+  color: gray;
 }
 
 .user-info {
   display: flex;
   align-items: center;
-
 }
 
 .user-avatar {
@@ -376,10 +381,6 @@ header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
-}
-
-.username {
-  font-weight: bold;
 }
 
 .comment-user{

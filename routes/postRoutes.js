@@ -7,7 +7,7 @@ const postController = require('../controllers/postController');
 //  CREATE POST
 router.post("/create-post", (req, res) => {
     const postTag = req.body.postTag;
-    console.log("Received post tag:", postTag); 
+    const user = req.user;
     if (postTag) {
         switch (postTag) {
             case "Pre-Enlistment":
@@ -37,6 +37,8 @@ router.post("/post/:id/edit", postController.postEditPost);
 
 // DELETE POST
 router.post("/post/:id/delete", postController.deletePost);
+
+router.post("/vote", postController.vote);
 
 /* ===== COMMENTS ===== */
 

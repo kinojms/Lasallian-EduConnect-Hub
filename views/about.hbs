@@ -17,7 +17,7 @@
                     <img src="images/logo.png" alt="Website Logo">
                 </div>
                 <div class="name-logo">
-                    <img src="images/name-logo.png" alt="Name Logo">
+                    <img src="images/Name-logo.png" alt="Name Logo">
                 </div>
             </div>
             <div class="login">
@@ -45,6 +45,11 @@
 
                 <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
                 <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+
+                <!-- Admin Menu button -->
+                {{#ifEquals user.role 'admin'}}
+                    <li><a href="/admin"><i class="fa fa-cogs"></i> Admin Menu </a></li>
+                {{/ifEquals}}
             </ul>
         </div>
 

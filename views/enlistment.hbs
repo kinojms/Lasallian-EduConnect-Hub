@@ -91,37 +91,37 @@
          <div class="post-container">
             <!-- Posts -->
             {{#each posts}}
-            <a href="/post/{{this._id}}">
-            <div class="post">
-                    <div class="user-header">
-                        <div class="user-info">
-                            {{#if user.profilePicture}}
-                                <img class="profile-pic" src="{{user.profilePicture}}">
-                            {{else}}
-                                <img class="profile-pic" src="/images/logo.png">
-                            {{/if}}
-                            <span class="username">{{this.username}}</span>
+                <a href="/post/{{this._id}}">
+                    <div class="post">
+                        <div class="user-header">
+                            <div class="user-info">
+                               {{#if this.profilePicture}}
+                                    <img class="profile-pic" src="data:image/png;base64,{{this.profilePicture}}" alt="Profile Picture">
+                                {{else}}
+                                    <img class="profile-pic" src="/images/logo.png">
+                                {{/if}}
+                                <span class="username">{{this.username}}</span>
+                            </div>
+                        </div>
+                        <div class="post-header">
+                            <h2>{{this.postTitle}}</h2>
+                        </div>
+                        <div class="post-content">
+                            <p>{{this.postContent}}</p>
+                        </div>
+                        <div class="post-actions">
+                            <div class="vote-container">
+                                <upvote id="upvoteBtn" class="fa fa-arrow-up"> {{ upvotes }}</upvote>
+                            </div>
+                            <div class="vote-container">
+                                <downvote class="fa fa-arrow-down"> {{ downvotes }}</downvote>
+                            </div>
+                            <div class="vote-container">
+                                <comment class="fa fa-comment"> {{ comments.length }}</comment>
+                            </div>
                         </div>
                     </div>
-                    <div class="post-header">
-                        <h2>{{this.postTitle}}</h2>
-                    </div>
-                    <div class="post-content">
-                        <p>{{this.postContent}}</p>
-                    </div>
-                    <div class="post-actions">
-                        <div class="vote-container">
-                            <upvote id="upvoteBtn" class="fa fa-arrow-up"> {{ upvotes }}</upvote>
-                        </div>
-                        <div class="vote-container">
-                            <downvote class="fa fa-arrow-down"> {{ downvotes }}</downvote>
-                        </div>
-                        <div class="vote-container">
-                            <comment class="fa fa-comment"> {{ this.comments.length }}</comment>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
             {{/each}}
         </div>
 </body>

@@ -32,8 +32,14 @@ router.delete('/admin/post/:id', isAdmin, (req, res) => {
 
 //  BAN USER
 router.put('/admin/user/:id/ban', isAdmin, (req, res) => {
-    UserModel.findByIdAndUpdate(req.params.id, { banned: true }).then(() => {
-        res.redirect('/admin');
+    UserModel.findById(req.params.id).then(user => {
+        if (user.role === 'admin') {
+            res.status(403).send('Cannot ban an admin');
+        } else {
+            UserModel.findByIdAndUpdate(req.params.id, { banned: true }).then(() => {
+                res.redirect('/admin/users');
+            });
+        }
     });
 });
 

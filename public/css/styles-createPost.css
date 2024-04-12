@@ -25,6 +25,11 @@ header {
     align-items: center;
 }
 
+.logo-group {
+    display: flex;
+    align-items: center;
+}
+
 .logo img,
 .name-logo img {
     max-height: 40px; 
@@ -195,5 +200,31 @@ header {
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
+}
+
+.search-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: .25rem;
+    margin-right: auto; /* Change to auto to center */
+    margin-left: auto; /* Change to auto to center */
+    padding: 5px; /* Add padding for roundness */
+    border-radius: 20px; /* Increase border-radius for roundness */
+    background-color: white; /* Add background color */
+    width: fit-content; /* Adjust width to content */
+    align-items: center; /* Center vertically */
+}
+
+input {
+    font-size: 1rem;
+    border: none; /* Remove default input border */
+    outline: none; /* Remove outline */
+    padding: 5px; /* Add padding for appearance */
+    border-radius: 20px; /* Add border-radius */
+    width: 200px; /* Adjust width as needed */
+}
+
+.search-button:hover {
+    background-color: #2980b9; /* Example color on hover */
 }
 

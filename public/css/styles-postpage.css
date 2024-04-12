@@ -187,7 +187,8 @@ header {
 
 .upvote,
 .downvote,
-.comment {
+.comment,
+.share {
   padding: 8px 16px;
   font-size: 14px;
   border: none;
@@ -219,6 +220,14 @@ header {
 .vote-container comment {
   border-radius: 4px;
   background-color: #087830;
+  color: #fff;
+  padding: 8px;
+  margin-right: 2px;
+}
+
+.vote-container share {
+  border-radius: 4px;
+  background-color: #807979;
   color: #fff;
   padding: 8px;
   margin-right: 2px;

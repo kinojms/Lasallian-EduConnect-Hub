@@ -8,7 +8,9 @@ require('dotenv').config();
 const postController = require('../controllers/postController');
 const userController = require('../controllers/userController');
 
-const UserModel = require('../models/UserModel');
+var UserModel = require('../models/UserModel');
+var PostModel = require('../models/PostModel');
+var CommentModel = require('../models/CommentModel');
 
 const app = express();
 
@@ -54,8 +56,9 @@ app.get('/enlistment', postController.getEnlistPosts);
 // STU-CO
 app.get('/student-concerns', postController.getConcernPosts);
 
+//  CREATE POST
 app.get('/create-post', (req, res) => {
-    res.render('create-post');
+    res.render('create-post', { user: req.user });
 })
 
 // ABOUT
@@ -69,7 +72,7 @@ app.get("/contact", (req, res) => {
 });
 
 //PROFILE
-app.get('/profile', ensureAuthenticated, (req, res) => {
+app.get('/profile', ensureAuthenticated,postController.getUserPostsAndComments, (req, res) => {
     res.render('profile', { user: req.user });
 });
 
@@ -82,7 +85,7 @@ app.get('/logout', (req, res) => {
         if (err) {
             console.log(err);
         }
-        // Also clear the cookie
+   
         res.clearCookie('sid');
         res.redirect('/login');
     });
@@ -135,48 +138,36 @@ app.post('/update-password', ensureAuthenticated, (req, res) => {
 
 //UPLOAD PROFILE PIC
 app.post('/upload-profile-picture', upload.single('profilePicture'), (req, res, next) => {
+    // Convert the uploaded file to a base64 string
+    let profilePicture = fs.readFileSync(req.file.path).toString('base64');
+
     UserModel.findById(req.user._id)
     .then(user => {
-        if (user.profilePicture) {
-            // Delete the old profile picture
-            const oldProfilePicturePath = path.join(__dirname, '..', user.profilePicture);
-            fs.unlink(oldProfilePicturePath, err => {
-                if (err && err.code !== 'ENOENT') {
-                    console.error(err);
-                    return res.status(500).send('An error occurred while deleting the old profile picture');
-                }
-
-                // Save the new profile picture
-                var obj = {
-                    profilePicture: '/uploads/' + req.file.filename
-                }
-                UserModel.findByIdAndUpdate(req.user._id, obj, {new: true})
-                .then(user => {
-                    res.redirect('/profile');
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.status(500).send('An error occurred while updating the profile picture');
-                });
-            });
-        } else {
-            // Save the new profile picture
-            var obj = {
-                profilePicture: '/uploads/' + req.file.filename
-            }
-            UserModel.findByIdAndUpdate(req.user._id, obj, {new: true})
-            .then(user => {
-                res.redirect('/profile');
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).send('An error occurred while updating the profile picture');
-            });
-        }
+        // Save the new profile picture
+        return UserModel.findByIdAndUpdate(req.user._id, { profilePicture: profilePicture }, {new: true});
+    })
+    .then(user => {
+        // Update the user's profile picture in the PostModel
+        return PostModel.updateMany(
+            { username: req.user.username },
+            { profilePicture: profilePicture }
+        );
+    })
+    .then(() => {
+        // Update the user's profile picture in the CommentModel
+        return CommentModel.updateMany(
+            { username: req.user.username },
+            { profilePicture: profilePicture }
+        );
+    })
+    .then(() => {
+        // Delete the uploaded file after saving it to the database
+        fs.unlinkSync(req.file.path);
+        res.redirect('/profile');
     })
     .catch(err => {
         console.log(err);
-        res.status(500).send('An error occurred while retrieving the user');
+        res.status(500).send('An error occurred while updating the profile picture');
     });
 });
 
@@ -184,7 +175,25 @@ app.post('/upload-profile-picture', upload.single('profilePicture'), (req, res, 
 app.post('/edit-profile', ensureAuthenticated, (req, res) => {
     const { username, firstName, lastName, email } = req.body;
 
-    UserModel.findByIdAndUpdate(req.user._id, { username, firstName, lastName, email })
+    UserModel.findById(req.user._id)
+    .then(user => {
+        // Save the new username
+        return UserModel.findByIdAndUpdate(req.user._id, { username, firstName, lastName, email }, {new: true});
+    })
+    .then(user => {
+        // Update the user's username in the PostModel
+        return PostModel.updateMany(
+            { username: req.user.username },
+            { username: username }
+        );
+    })
+    .then(() => {
+        // Update the user's username in the CommentModel
+        return CommentModel.updateMany(
+            { username: req.user.username },
+            { username: username }
+        );
+    })
     .then(() => {
         res.redirect('/profile');
     })

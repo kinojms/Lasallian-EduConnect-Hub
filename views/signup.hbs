@@ -15,11 +15,11 @@
                 <img src="/images/logo.png" alt="Website Logo">
             </div>
             <div class="name-logo">
-                <img src="/images/name-logo.png" alt="Name Logo">
+                <img src="/images/Name-logo.png" alt="Name Logo">
             </div>
         </div>
         <form id="signup">
-            <input type="email" name="email" placeholder="Email Address (@gmail only)" pattern=".+@gmail\.com$" required>
+            <input type="text" name="email" placeholder="Google Email" required>
             <div class="div">
                 <input type="text" name="lastName" placeholder="Last Name" required>
                 <input type="text" name="firstName" placeholder="First Name" required>
@@ -36,8 +36,8 @@
 
     <footer>
         <div class="footer-buttons">
-            <button onclick="window.location.href='/about'">About Us</button>
-            <button onclick="window.location.href='/contact'">Contact Us</button>
+            <button onclick="window.location.href=''">About Us</button>
+            <button onclick="window.location.href=''">Contact Us</button>
         </div>
     </footer>
 
@@ -53,7 +53,6 @@
             password: document.querySelector('input[name="password"]').value
         };
 
-        console.log(data);
         fetch('/signup', {
             method: 'POST',
             headers: {
@@ -67,7 +66,6 @@
             }
             return response.json();
         }).then(json => {
-            console.log(json);
             // Check if signup was successful
             if (json.message === "Account created successfully!") {
                 // Redirect to profile page upon successful signup

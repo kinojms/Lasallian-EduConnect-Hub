@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="name-logo">
-                    <img src="/images/name-logo.png" alt="Name Logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
                 </div>
             </div>
             <div class="login">
@@ -33,7 +33,7 @@
                 </form>
             </div>
             {{#if user.profilePicture}}
-                <img class="profile-pic" src="{{user.profilePicture}}">
+                <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
             {{else}}
                 <img class="profile-pic" src="images/logo.png">
             {{/if}}

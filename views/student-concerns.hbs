@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="name-logo">
-                    <img src="/images/name-logo.png" alt="Name Logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
                 </div>
             </div>
             <div class="login">
@@ -33,7 +33,7 @@
                 </form>
             </div>
             {{#if user.profilePicture}}
-                <img class="profile-pic" src="{{user.profilePicture}}">
+                <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
             {{else}}
                 <img class="profile-pic" src="images/logo.png">
             {{/if}}
@@ -57,6 +57,11 @@
 
                 <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
                 <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+
+                <!-- Admin Menu button -->
+                {{#ifEquals user.role 'admin'}}
+                    <li><a href="/admin"><i class="fa fa-cogs"></i> Admin Menu </a></li>
+                {{/ifEquals}}
             </ul>
         </div>
 
@@ -71,9 +76,15 @@
             </div>
 
             <!-- Create Post button -->
-            <a href="/create-post" id="create-post-button">
-                <i class="fa-solid fa-pen"></i>
-            </a>
+            {{#if isAuthenticated}}
+                <a href="/create-post" id="create-post-button">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+            {{else}}
+                <a href="#" id="create-post-button" onclick="alert('You must be logged in to create a post.'); return false;">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+            {{/if}}
 
         </div>
 

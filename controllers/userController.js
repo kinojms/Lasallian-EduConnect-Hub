@@ -1,32 +1,37 @@
-const UserModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const validator = require('validator');
 
+const UserModel = require('../models/UserModel');
+
 function validateEmail(email) {
     return validator.isEmail(email);
 }
 
+//  PASSPORT SESSION
 passport.use(new LocalStrategy(
-    function(username, password, done) {
-      UserModel.findOne({ username: username })
-        .then(user => {
-          if (!user) {
-            return done(null, false, { message: 'Incorrect username.' });
-          }
-          bcrypt.compare(password, user.password)
-            .then(isMatch => {
-              if (isMatch) {
-                return done(null, user);
-              } else {
-                return done(null, false, { message: 'Incorrect password.' });
-              }
-            })
-            .catch(err => done(err));
-        })
-        .catch(err => done(err));
-    }
+  function(username, password, done) {
+    UserModel.findOne({ username: username })
+      .then(user => {
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (user.banned) {
+          return done(null, false, { message: 'This account has been banned.' });
+        }
+        bcrypt.compare(password, user.password)
+          .then(isMatch => {
+            if (isMatch) {
+              return done(null, user);
+            } else {
+              return done(null, false, { message: 'Incorrect password.' });
+            }
+          })
+          .catch(err => done(err));
+      })
+      .catch(err => done(err));
+  }
 ));  
 
 passport.serializeUser(function(user, done) {
@@ -43,53 +48,65 @@ passport.deserializeUser(function(id, done) {
     });
 });
   
-
+//  SIGNUP
 exports.signup = async (req, res, next) => {
-    const { email, lastName, firstName, username, password } = req.body;
+  const { email, lastName, firstName, username, password } = req.body;
 
-    if (!email || !lastName || !firstName || !username || !password) {
-        return res.status(400).json({ message: "All fields are required" });
-    }
+  if (!email || !lastName || !firstName || !username || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+  }
 
-    if (!validateEmail(email)) {
-        return res.status(400).json({ message: "Invalid email address" });
-    }
+  if (!validateEmail(email)) {
+      return res.status(400).json({ message: "Invalid email address" });
+  }
 
-    UserModel.findOne({ username: username }).then(existingUser => {
-        if (existingUser) {
-            return res.status(400).json({ message: "Username already taken" });
-        } else {
-            bcrypt.hash(password, 10).then(hashedPassword => {
-                const newUser = new UserModel({
-                    email: email,
-                    lastName: lastName,
-                    firstName: firstName,
-                    username: username,
-                    password: hashedPassword
-                });
+  // If Email is already taken
+  UserModel.findOne({ email: email }).then(existingEmail => {
+      if (existingEmail) {
+          return res.status(400).json({ message: "Email Address already taken!" });
+      } else {
+          // If username is already taken
+          UserModel.findOne({ username: username }).then(existingUser => {
+              if (existingUser) {
+                  return res.status(400).json({ message: "Username already taken" });
+              } else {
+                  bcrypt.hash(password, 10).then(hashedPassword => {
+                      const newUser = new UserModel({
+                          email: email,
+                          lastName: lastName,
+                          firstName: firstName,
+                          username: username,
+                          password: hashedPassword,
+                      });
 
-                newUser.save().then(savedUser => {
-                    req.login(savedUser, function(err) {
-                        if (err) { return next(err); }
-                        // Return a JSON response instead of redirecting
-                        return res.json({ message: "Account created successfully!" });
-                    });
-                }).catch(err => {
-                    console.error("Error saving user:", err);
-                    res.status(500).json({ message: "Internal server error" });
-                });
-            });
-        }
-    }).catch(err => {
-        console.error("Error finding user:", err);
-        res.status(500).json({ message: "Internal server error" });
-    });
+                      newUser.save().then(savedUser => {
+                          req.login(savedUser, function(err) {
+                              if (err) { return next(err); }
+                              return res.json({ message: "Account created successfully!" });
+                          });
+                      }).catch(err => {
+                          console.error("Error saving user:", err);
+                          res.status(500).json({ message: "Internal server error" });
+                      });
+                  });
+              }
+          }).catch(err => {
+              console.error("Error finding user:", err);
+              res.status(500).json({ message: "Internal server error" });
+          });
+      }
+  }).catch(err => {
+      console.error("Error finding email:", err);
+      res.status(500).json({ message: "Internal server error" });
+  });
 };
 
+//  LOGGING IN
 exports.login = (req, res) => {
   res.json({ message: "Login successful!", loggedInUser: req.user });
 };
 
+//  UPDATE PASSWORD
 exports.updatePassword = (req, res) => {
   if (!req.session.user || !req.session.user.username) {
     return res.status(400).json({ message: "User not logged in." });

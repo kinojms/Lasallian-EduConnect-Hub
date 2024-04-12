@@ -14,10 +14,12 @@
         <div class="header-container">
             <div class="logo-group">
                 <div class="logo">
+                    <a href="/">
                     <img src="/images/logo.png" alt="Website Logo">
+                    </a>
                 </div>
                 <div class="name-logo">
-                    <img src="/images/name-logo.png" alt="Name Logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
                 </div>
             </div>
             <div class="login">
@@ -25,20 +27,16 @@
                     <button class="login-button" id="loginButton" onclick="window.location.href='/login'">Login</button>
                 {{/unless}}
             </div>
-
-            <div class="">
-                 <div class="search-wrapper">
-                    <form action="/search" method="GET">
-                        <input type="search" id="search" name="search" placeholder="Search..." required>
-                    </form>
-                </div>
-                {{#if user.profilePicture}}
-                    <img class="profile-pic" src="{{user.profilePicture}}">
-                {{else}}
-                    <img class="profile-pic" src="images/logo.png">
-                {{/if}}
+            <div class="search-wrapper">
+                <form action="/search" method="GET">
+                <input type="search" id="search" name="search" placeholder="Search..." required>
+                </form>
             </div>
-           
+            {{#if user.profilePicture}}
+                <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
+            {{else}}
+                <img class="profile-pic" src="images/logo.png">
+            {{/if}}
         </div>
         <!-- Edits end here -->
     </header>
@@ -59,6 +57,11 @@
 
                 <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
                 <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+
+                <!-- Admin Menu button -->
+                {{#ifEquals user.role 'admin'}}
+                    <li><a href="/admin"><i class="fa fa-cogs"></i> Admin Menu </a></li>
+                {{/ifEquals}}
             </ul>
         </div>
 
@@ -79,11 +82,11 @@
 
         </div>
 
-         <div class="post-container">
+        <div class="post-container">
             <!-- Posts -->
             {{#each posts}}
             <a href="/post/{{this._id}}">
-            <div class="post">
+                <div class="post">
                     <div class="user-header">
                         <div class="user-info">
                             <img src="images/logo.png" alt="User Avatar" class="user-avatar">
@@ -105,6 +108,9 @@
                         </div>
                         <div class="vote-container">
                             <comment class="fa fa-comment"> {{ this.comments.length }}</comment>
+                        </div>
+                        <div class="vote-container">
+                            <share class="fa fa-share"> {{ shares }}</share>
                         </div>
                     </div>
                 </div>

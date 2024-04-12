@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="name-logo">
-                    <img src="/images/name-logo.png" alt="Name Logo">
+                    <img src="/images/Name-logo.png" alt="Name Logo">
                 </div>
             </div>
             <div class="login">
@@ -33,7 +33,7 @@
                 </form>
             </div>
             {{#if user.profilePicture}}
-                <img class="profile-pic" src="{{user.profilePicture}}">
+                <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
             {{else}}
                 <img class="profile-pic" src="images/logo.png">
             {{/if}}
@@ -45,7 +45,7 @@
             <ul>
                 <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
                 <!-- Added an ID for this link (for toggle feature) -->
-                <li><a id="accountButton" href="#" onclick="navigateToProfile()"><i class="fa fa-user"></i> Account </a></li>
+                <li><a id="accountButton" href="/profile"><i class="fa fa-user"></i> Account </a></li>
 
                 <li class="divider"><span></span></li>
 
@@ -57,6 +57,11 @@
 
                 <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
                 <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+
+                <!-- Admin Menu button -->
+                {{#ifEquals user.role 'admin'}}
+                    <li><a href="/admin"><i class="fa fa-cogs"></i> Admin Menu </a></li>
+                {{/ifEquals}}
             </ul>
         </div>
 
@@ -90,8 +95,8 @@
                     <div class="post">
                         <div class="user-header">
                             <div class="user-info">
-                               {{#if userIsAuthor}}
-                                    <img class="profile-pic" src="{{user.profilePicture}}">
+                               {{#if this.profilePicture}}
+                                    <img class="profile-pic" src="data:image/png;base64,{{this.profilePicture}}" alt="Profile Picture">
                                 {{else}}
                                     <img class="profile-pic" src="/images/logo.png">
                                 {{/if}}

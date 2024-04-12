@@ -15,10 +15,10 @@
                 <img src="images/logo.png" alt="Website Logo">
             </div>
             <div class="name-logo">
-                <img src="images/name-logo.png" alt="Name Logo">
+                <img src="images/Name-logo.png" alt="Name Logo">
             </div>
             {{#if user.profilePicture}}
-                <img class="profile-pic" src="{{user.profilePicture}}">
+                <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
             {{else}}
                 <img class="profile-pic" src="images/logo.png">
             {{/if}}
@@ -26,22 +26,28 @@
     </header>
 
     <div class="sidebar">
-        <ul>
-            <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
-            <li><a href="/profile"><i class="fa fa-user"></i> Account </a></li>
+            <ul>
+                <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+                <!-- Added an ID for this link (for toggle feature) -->
+                <li><a id="accountButton" href="/profile"><i class="fa fa-user"></i> Account </a></li>
 
-            <li class="divider"><span></span></li>
+                <li class="divider"><span></span></li>
 
-            <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
-            <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
-            <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
+                <li><a href="/pre-enlist"><i class="fa fa-list"></i> Pre-Enlistment Community </a></li>
+                <li><a href="/enlistment"><i class="fa fa-list"></i> Enlistment Community </a></li>
+                <li><a href="/student-concerns"><i class="fa fa-comments"></i> Student Concern Threads </a></li>
 
-            <li class="divider"><span></span></li>
+                <li class="divider"><span></span></li>
 
-            <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
-            <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
-        </ul>
-    </div>
+                <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
+                <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+
+                <!-- Admin Menu button -->
+                {{#ifEquals user.role 'admin'}}
+                    <li><a href="/admin"><i class="fa fa-cogs"></i> Admin Menu </a></li>
+                {{/ifEquals}}
+            </ul>
+        </div>
 
     <div class="container">
         <div class="profile-header">
@@ -54,7 +60,7 @@
                 <span class="edit-profile">
                     <div class="profile-pic-container">
                         {{#if user.profilePicture}}
-                            <img class="profile-pic-edit" src="{{user.profilePicture}}">
+                            <img class="profile-pic-edit" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
                         {{else}}
                             <img class="profile-pic-edit" src="images/default-profile.jpg">
                         {{/if}}
@@ -97,6 +103,80 @@
         </ul>
         <button class = "logout-button" id="logoutButton" onclick="location.href='/logout'">Logout</button>
     </div>
+
+    <div class ="container">
+        <div class="profile-header">
+            <span class="user-profile">Your Posts</span>
+        </div>
+            <ul>
+                 {{#if userPosts}}
+                <ul>
+                    {{#each userPosts}}
+                        <div class="post">
+                            <div class="user-header">
+                                <div class="user-info">
+                                    {{#if this.profilePicture}}
+                                        <img class="profile-pic" src="data:image/png;base64,{{this.profilePicture}}" alt="Profile Picture">
+                                    {{else}}
+                                        <img class="profile-pic" src="/images/logo.png">
+                                    {{/if}}
+                                    <span class="username">{{this.username}}</span>
+                                </div>
+                            </div>
+                            <div class="post-header">
+                               <h2><a href="/post/{{this.id}}">{{this.postTitle}}</a></h2>
+                            </div>
+                            <div class="post-content">
+                                <p>{{this.postContent}}</p>
+                            </div>
+                            <div class="post-actions">
+                                <div class="vote-container">
+                                    <upvote id="upvoteBtn" class="fa fa-arrow-up"> {{ upvotes }}</upvote>
+                                </div>
+                                <div class="vote-container">
+                                    <downvote class="fa fa-arrow-down"> {{ downvotes }}</downvote>
+                                </div>
+                                <div class="vote-container">
+                                    <comment class="fa fa-comment"> {{ comments.length }}</comment>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <p>No posts found.</p>
+            {{/if}}
+            </ul>
+        
+        <!-- List of Comments -->
+        <div class="profile-header">
+            <span class="user-profile">Your Comments</span>
+        </div>
+            <ul>
+                {{#if userComments}}
+                <ul>
+                    {{#each userComments}}
+                    <div class="comment">
+                        <div class="user-info">
+                            {{#if this.profilePicture}}
+                            <img class="profile-pic" src="data:image/png;base64,{{this.profilePicture}}" alt="Profile Picture">
+                            {{else}}
+                                <img class="profile-pic" src="/images/logo.png">
+                            {{/if}}
+                            <span class="comment-user">{{this.username}}</span>
+                        </div>
+                    <div class="post-content">
+                                <p>{{this.text}}</p>
+                    </div>
+                </div>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <p> No comments found.</p>
+            {{/if}}
+            </ul>
+        </div>
+    </div>
  
 </body>
 
@@ -126,6 +206,51 @@ document.addEventListener('DOMContentLoaded', (event) => {
         .catch(error => console.error('Error:', error));
     });
 });
+
+var upvoted = false;
+var downvoted = false;
+
+      document.getElementById('upvoteBtn').addEventListener('click', function() {
+          if (!upvoted) {
+              var upvoteCount = parseInt(this.textContent.trim());
+              upvoteCount += 1;
+              this.textContent = ' ' + upvoteCount;
+              upvoted = true;
+
+              if (downvoted) {
+                  var downvoteCount = parseInt(document.getElementById('downvoteBtn').textContent.trim());
+                  downvoteCount -= 1;
+                  document.getElementById('downvoteBtn').textContent = ' ' + downvoteCount;
+                  downvoted = false;
+              }
+          } else {
+              var upvoteCount = parseInt(this.textContent.trim());
+              upvoteCount -= 1;
+              this.textContent = ' ' + upvoteCount;
+              upvoted = false;
+          }
+      });
+
+      document.getElementById('downvoteBtn').addEventListener('click', function() {
+          if (!downvoted) {
+              var downvoteCount = parseInt(this.textContent.trim());
+              downvoteCount += 1;
+              this.textContent = ' ' + downvoteCount;
+              downvoted = true;
+
+              if (upvoted) {
+                  var upvoteCount = parseInt(document.getElementById('upvoteBtn').textContent.trim());
+                  upvoteCount -= 1;
+                  document.getElementById('upvoteBtn').textContent = ' ' + upvoteCount;
+                  upvoted = false;
+              }
+          } else {
+              var downvoteCount = parseInt(this.textContent.trim());
+              downvoteCount -= 1;
+              this.textContent = ' ' + downvoteCount;
+              downvoted = false;
+          }
+      });
 
 </script>
 

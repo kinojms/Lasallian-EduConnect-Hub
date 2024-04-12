@@ -95,7 +95,7 @@ input {
 }
 
 .login {
-    position: absolute;
+    position: fixed;
     right: 150px; /* Adjust position */
 }
 

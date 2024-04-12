@@ -1,20 +1,14 @@
 const mongoose = require('mongoose');
 
-// const userSchema = new mongoose.Schema({
-//     email: String,
-//     lastName: String,
-//     firstName: String,
-//     username: { type: String, unique: true },
-//     password: String
-// });
-
 const userSchema = new mongoose.Schema({
-    email: String,
+    email: { type: String, unique: true },
     lastName: String,
     firstName: String,
     username: { type: String, unique: true },
     password: String,
-    profilePicture: String // New field for the profile picture
+    profilePicture: { data: Buffer, contentType: String },
+    role: { type: String, default: 'user'},
+    banned: Boolean,
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -332,3 +332,8 @@ input {
 .search-button:hover {
   background-color: #2980b9; /* Example color on hover */
 }
+
+.username {
+  font-weight: bold;
+  margin-left: 10px;
+}

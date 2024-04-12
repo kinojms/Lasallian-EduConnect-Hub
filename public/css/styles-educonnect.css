@@ -19,6 +19,7 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
 /* Edits start here */
 /* Added justify-content */
 .header-container {
@@ -35,11 +36,13 @@ header {
 
 /* Added this for the Login Button */
 
+/* Added this for the Profile Pic */
 .profile-pic {
-    width: 45px;
-    height: 45px;
+    width: 50px;
     border-radius: 50%;
     overflow: hidden;
+    margin-right: 20px;
+    height: auto;
 }
 
 .profile-pic-edit {
@@ -49,27 +52,26 @@ header {
     overflow: hidden;
 }
 
-/* Added flex-grow to the .search-wrapper */
 .search-wrapper {
     display: flex;
     flex-direction: row;
     gap: .25rem;
-    margin-right: auto; /* Change to auto to center */
-    margin-left: auto; /* Change to auto to center */
-    padding: 5px; /* Add padding for roundness */
-    border-radius: 20px; /* Increase border-radius for roundness */
-    background-color: white; /* Add background color */
-    width: fit-content; /* Adjust width to content */
-    align-items: center; /* Center vertically */
+    margin-right: 10px; 
+    margin-left: 450px;
+    padding: 5px; 
+    border-radius: 20px;
+    background-color: white;
+    width: fit-content; 
+    align-items: center;
 }
 
 input {
     font-size: 1rem;
-    border: none; /* Remove default input border */
-    outline: none; /* Remove outline */
-    padding: 5px; /* Add padding for appearance */
-    border-radius: 20px; /* Add border-radius */
-    width: 200px; /* Adjust width as needed */
+    border: none; 
+    outline: none; 
+    padding: 5px; 
+    border-radius: 20px; 
+    width: 200px; 
   }
   
   .search-button:hover {
@@ -82,7 +84,7 @@ input {
     height: 45px;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 20px; /* Adjust margin to create space between search and profile pic */
+    margin-left:450px;
 }
 
 .profile-pic-edit {
@@ -94,7 +96,7 @@ input {
 
 .login {
     position: absolute;
-    right: 20px; /* Adjust position */
+    right: 150px; /* Adjust position */
 }
 
 .login-button {

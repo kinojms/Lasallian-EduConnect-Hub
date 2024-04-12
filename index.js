@@ -11,6 +11,7 @@ const fs = require('fs');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const routes = require('./routes/route');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 
@@ -31,6 +32,12 @@ const hbs = exphbs.create({
     defaultLayout: false, // Disable default layout
     runtimeOptions: {
         allowProtoPropertiesByDefault: true
+    },
+    helpers: {
+
+        ifEquals: function(arg1, arg2, options) {
+            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+        }
     }
 });
 
@@ -68,6 +75,8 @@ app.use('/', userRoutes);
 app.use('/', postRoutes);
 
 app.use('/', routes);
+
+app.use('/', adminRoutes);
 
 app.listen(3000, () => {
     console.log("Server is running");

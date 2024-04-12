@@ -14,19 +14,39 @@
 
         <header>
             <div class="header-container">
-                <div class="logo">
-                    <img src="/images/logo.png" alt="Website Logo">
+                <div class="logo-group">
+                    <div class="logo">
+                        <a href="/">
+                        <img src="/images/logo.png" alt="Website Logo">
+                        </a>
+                    </div>
+                    <div class="name-logo">
+                        <img src="/images/Name-logo.png" alt="Name Logo">
+                    </div>
                 </div>
-                <div class="name-logo">
-                    <img src="/images/name-logo.png" alt="Name Logo">
+                <div class="login">
+                    {{#unless isAuthenticated}}
+                        <button class="login-button" id="loginButton" onclick="window.location.href='/login'">Login</button>
+                    {{/unless}}
                 </div>
+                <div class="search-wrapper">
+                    <form action="/search" method="GET">
+                    <input type="search" id="search" name="search" placeholder="Search..." required>
+                    </form>
+                </div>
+                    {{#if user.profilePicture}}
+                        <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
+                    {{else}}
+                        <img class="profile-pic" src="images/logo.png">
+                    {{/if}}
             </div>
         </header>
 
         <div class="sidebar">
             <ul>
                 <li><a href="/"><i class="fa fa-home"></i> Home </a></li>
-                <li><a href="/profile"><i class="fa fa-user"></i> Account </a></li>
+                <!-- Added an ID for this link (for toggle feature) -->
+                <li><a id="accountButton" href="/profile"><i class="fa fa-user"></i> Account </a></li>
 
                 <li class="divider"><span></span></li>
 
@@ -38,6 +58,11 @@
 
                 <li><a href="/about"><i class="fa fa-address-card"></i> About us </a></li>
                 <li><a href="/contact"><i class="fa fa-phone"></i> Contact us </a></li>
+
+                <!-- Admin Menu button -->
+                {{#ifEquals user.role 'admin'}}
+                    <li><a href="/admin"><i class="fa fa-cogs"></i> Admin Menu </a></li>
+                {{/ifEquals}}
             </ul>
         </div>
 

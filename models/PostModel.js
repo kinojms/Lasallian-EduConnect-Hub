@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var Comment = require("./CommentModel");
 var Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
@@ -25,26 +24,27 @@ var PostSchema = new Schema({
     require: true
   },
   upvotes: {
-    type: Array,
-    required: false,
+    type: Number, // Corrected type
     default: 0
   },
   downvotes: {
-    type: Array,
-    required: false,
+    type: Number, // Corrected type
     default: 0
   },
-
+  votes: [{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    type: {
+      type: String,
+      enum: ['upvote', 'downvote']
+    }
+  }],
   comments: [{
       type: Schema.Types.ObjectId,
       ref: 'Comment'
-  }],
-
-  shares: {
-    type: Array,
-    required: true,
-    default: 0
-  },
+  }]
 });
 
 module.exports = mongoose.model("Post", PostSchema);

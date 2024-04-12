@@ -19,11 +19,13 @@
             <div class="name-logo">
                 <img src="images/name-logo.png" alt="Name Logo">
             </div>
-            {{#if user.profilePicture}}
-                <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
-            {{else}}
-                <img class="profile-pic" src="images/logo.png">
-            {{/if}}
+            <a href="/profile">
+                    {{#if user.profilePicture}}
+                        <img class="profile-pic" src="data:image/png;base64,{{user.profilePicture}}" alt="Profile Picture">
+                    {{else}}
+                        <img class="profile-pic" src="images/logo.png">
+                    {{/if}}
+                </a>
         </div>
     </header>
 

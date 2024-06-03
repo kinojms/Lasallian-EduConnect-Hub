@@ -6,7 +6,7 @@ Members: Justin Sacdalan, Sophia Reine Orencia, Sebastian Figueroa
 
 Introduction
 
-- Lasallian EduConnect Pub provides students with a place to ask their peers for advice and assistance on a range of academic issues. Students can exchange tips on how to handle the coursework, make appropriate schedules, and navigate campus life in this forum.
+- Lasallian EduConnect Hub provides students with a place to ask their peers for advice and assistance on a range of academic issues. Students can exchange tips on how to handle the coursework, make appropriate schedules, and navigate campus life in this forum.
 
 Setting up the app:
 
